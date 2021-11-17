@@ -1,0 +1,42 @@
+<div>
+  <div class="row text-center">
+    <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate: view + 'ViewTitle':'Es'}}</h3>
+      </div>
+  </div>
+
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="'month'"
+      [viewDate]="viewDate"
+      [events]="events"
+      [locale]="locale"
+      [excludeDays]="excludeDays"
+      (beforeViewRender)="beforeMonthViewRender($event)"
+      (dayClicked)="clickDate(clickedDate = $event.day.date)"
+    >
+    </mwl-calendar-month-view>
+  </div>
+
+  <app-calendar-header [(view)]="view" [(viewDate)]="viewDate" [locale]="locale"></app-calendar-header>
+</div>
+
+<div *ngIf="show">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Horario</th>
+        <th scope="col">Agendar</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let hs of horario">
+      <tr>
+        <td><strong>{{hs.hs}}</strong></td>
+        <td>
+          <button class="btn btn-success">Agendar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
