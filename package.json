@@ -22,7 +22,9 @@
     "@angular/platform-browser-dynamic": "~10.1.2",
     "@angular/router": "~10.1.2",
     "angular-calendar": "^0.28.28",
+    "class-transformer": "^0.4.0",
     "date-fns": "^2.16.1",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

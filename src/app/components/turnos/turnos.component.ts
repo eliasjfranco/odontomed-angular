@@ -4,6 +4,8 @@ import { TurnosService } from 'src/app/services/turnos.service';
 import { CalendarEvent, CalendarMonthViewBeforeRenderEvent, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { DatePipe } from '@angular/common';
 import { Turno } from 'src/app/model/turno';
+import { plainToClass } from 'class-transformer';
+import { TurnoPersona } from 'src/app/model/response/turno-persona';
 
 @Component({
   selector: 'app-turnos',
@@ -45,6 +47,8 @@ export class TurnosComponent implements OnInit {
 
   now = new Date();
 
+  dia: string;
+
   formatDate: string[] = ['yyyy-MM-dddd'];
 
   constructor(
@@ -68,10 +72,6 @@ export class TurnosComponent implements OnInit {
       })
     )
 
-    console.log(this.turnoPersona)
-
-    console.log(this.turno)
-
   }
 
   beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
@@ -85,13 +85,12 @@ export class TurnosComponent implements OnInit {
 
   clickDate(date:Date): void{
     this.horario = this.turno.slice();
+    this.dia = this.datePipe.transform(this.clickedDate, 'dd-MM-yyyy');
 
     if(date > this.now)
       this.show = true;
     else
       this.show = false;
-
-    console.log(this.show)
 
     this.turnoPersona.forEach(t => {
         if(this.datePipe.transform(date, 'yyyy-MM-dd') == t.fecha){
@@ -102,5 +101,20 @@ export class TurnosComponent implements OnInit {
     });
 
     console.log(this.horario);
+  }
+
+
+  //TERMINAR SERVICIO DE AGENDAR TURNO MEDIANTE API
+  agendar(id:number, clickedDate:Date): void{
+    let hora = new Turno();
+    let fecha = new TurnoPersona();
+    let turno = new Turno_Persona(this.datePipe.transform(clickedDate, 'dd/MM/yyyy'), id);
+    this.turnoService.saveTurno(turno).subscribe( 
+      t => {
+        fecha = plainToClass(TurnoPersona, t)
+        hora = plainToClass(Turno, fecha.turno)
+        alert("Turno agendado - Dia: " + fecha.fecha + " Hora: " + hora.hs)
+      }
+    );
   }
 }
