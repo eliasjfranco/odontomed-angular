@@ -23,6 +23,7 @@
 </div>
 
 <strong *ngIf="clickedDate">Día seleccionado: {{dia}} </strong>
+<div #vf></div>
 
 <div *ngIf="show">
   <table class="table">
@@ -32,11 +33,11 @@
         <th scope="col">Agendar</th>
       </tr>
     </thead>
-    <tbody *ngFor="let hs of horario">
+    <tbody *ngFor="let hs of horario; let i=index">
       <tr>
         <td><strong>{{hs.hs}}</strong></td>
         <td>
-          <button class="btn btn-success" (click)="agendar(hs.id, clickedDate)">Agendar</button>
+          <button class="btn btn-success" (click)="agendar(hs.id, clickedDate, i)">Agendar</button>
         </td>
       </tr>
     </tbody>

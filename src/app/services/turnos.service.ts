@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Turno } from '../model/turno';
 import { Turno_Persona } from '../model/turno_persona';
-import { TurnoPersona } from '../model/response/turno-persona';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,7 @@ export class TurnosService {
     return this.http.get<Turno[]>(urlId);
   }
 
-  saveTurno(turno: Turno_Persona):Observable<TurnoPersona>{
-    return this.http.post<TurnoPersona>(this.url, turno);
+  saveTurno(turno: Turno_Persona):Observable<Turno_Persona>{
+    return this.http.post<Turno_Persona>(this.url, turno);
   }
 }

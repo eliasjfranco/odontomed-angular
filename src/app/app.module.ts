@@ -13,6 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarHeaderComponent } from './utils/calendar-header/calendar-header.component'
 import { registerLocaleData, DatePipe } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { AlertTurnDirective } from './utils/alert/alert-turn.directive';
 
 registerLocaleData(localeEs);
 
@@ -21,7 +22,8 @@ registerLocaleData(localeEs);
     AppComponent,
     LoginComponent,
     TurnosComponent,
-    CalendarHeaderComponent
+    CalendarHeaderComponent,
+    AlertTurnDirective
   ],
   imports: [
     BrowserModule,
