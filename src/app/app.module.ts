@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TurnosComponent } from './components/turnos/turnos.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -14,6 +14,8 @@ import { CalendarHeaderComponent } from './utils/calendar-header/calendar-header
 import { registerLocaleData, DatePipe } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { AlertTurnDirective } from './utils/alert/alert-turn.directive';
+import { RegistroComponent } from './components/registro/registro.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 registerLocaleData(localeEs);
 
@@ -23,15 +25,19 @@ registerLocaleData(localeEs);
     LoginComponent,
     TurnosComponent,
     CalendarHeaderComponent,
-    AlertTurnDirective
+    AlertTurnDirective,
+    RegistroComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},

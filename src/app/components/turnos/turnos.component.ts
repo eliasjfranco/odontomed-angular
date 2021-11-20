@@ -8,6 +8,7 @@ import { plainToClass } from 'class-transformer';
 import { TurnoPersona } from 'src/app/model/response/turno-persona';
 import { AlertComponent } from 'src/app/utils/alert/alert-component';
 import { Router } from '@angular/router';
+import { ErrorNotificacion } from 'src/app/services/error-notificacion';
 
 @Component({
   selector: 'app-turnos',
@@ -61,7 +62,8 @@ export class TurnosComponent implements OnInit {
     private turnoService:TurnosService,
     private datePipe:DatePipe,
     private router:Router,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private alerta: ErrorNotificacion
   ) { }
 
   ngOnInit(): void {
@@ -113,7 +115,8 @@ export class TurnosComponent implements OnInit {
       t => {
         fecha = plainToClass(TurnoPersona, t)
         hora = plainToClass(Turno, fecha.turno)
-        this.createComponent();
+        this.alerta.showError(202, "Turno Agendado con exito:" + fecha + " Hora: " + hora, 'okTurn');
+        //this.createComponent();
         setTimeout(() => this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
           this.router.navigate(['/turnos'])
         }), 5000);
@@ -144,8 +147,8 @@ export class TurnosComponent implements OnInit {
     return turno;
   }
 
-  public createComponent(): void{
+  /*public createComponent(): void{
     const component = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
     this.vf.createComponent(component);
-  }
+  }*/
 }

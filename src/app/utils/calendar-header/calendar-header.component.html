@@ -1,34 +1,34 @@
 <div class="row text-center">
-  <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <div class="btn-group">
-        <div
-          class="btn btn-primary"
-          mwlCalendarPreviousView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="viewDateChange.next(viewDate)"
-        >
-          Anterior
-        </div>
-        <div
-          class="btn btn-outline-secondary"
-          mwlCalendarToday
-          [(viewDate)]="viewDate"
-          (viewDateChange)="viewDateChange.next(viewDate)"
-        >
-          Hoy
-        </div>
-        <div
-          class="btn btn-primary"
-          mwlCalendarNextView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="viewDateChange.next(viewDate)"
-        >
-          Siguiente
+    <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="viewDateChange.next(viewDate)"
+          >
+            Anterior
+          </div>
+          <div
+            class="btn btn-outline-secondary"
+            mwlCalendarToday
+            [(viewDate)]="viewDate"
+            (viewDateChange)="viewDateChange.next(viewDate)"
+          >
+            Hoy
+          </div>
+          <div
+            class="btn btn-primary"
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="viewDateChange.next(viewDate)"
+          >
+            Siguiente
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <br/>
+    <br/>

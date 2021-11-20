@@ -2,3 +2,44 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-simple-snackbar{
+    font-weight: bold;
+}
+
+.mat-snack-bar-container{
+    min-width: 400px;
+}
+
+.error{
+    background-color: red;
+    color: white;
+}
+
+.error button{
+    background-color: orangered;
+    color: white;
+}
+
+.okReg{
+
+    background-color: green;
+    color: white;
+}
+
+.okReg button{
+    background-color: rgb(32, 209, 32);
+    color: white;
+}
+
+.okTurn{
+    background-color: blue;
+    color: white;
+}
+
+.okTurn button{
+    background-color: rgb(19, 86, 230);
+    color: white;
+}
+
+

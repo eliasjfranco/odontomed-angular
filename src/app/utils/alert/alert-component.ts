@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: 'dynamic',
-    template: ` <div class="modal fade show" style="display: block">
+    template: `<div class="modal fade show" style="display: block">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
