@@ -1,7 +1,23 @@
-    <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
-        <div>
-            <input type="text" name="email" placeholder="Email" [(ngModel)]="email" required>
-            <input type="password" name="password" placeholder="Password" [(ngModel)]="password" required>
-        </div>
-        <button class="btn btn-primary" [disabled]="!f.valid"></button>
-    </form>
+<div class="container">
+    <div class="abs-center">
+        <img src="./assets/img/logo.jpg" alt="">
+        <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+            <div class="card">
+                <h4 class="card-header">ingreso</h4>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" type="text" name="email" [(ngModel)]="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input class="form-control" type="password" name="password" [(ngModel)]="password" required>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-primary" [disabled]="!f.valid" value="Ingresar">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

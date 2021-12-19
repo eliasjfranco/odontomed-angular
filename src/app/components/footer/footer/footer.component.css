@@ -1,0 +1,29 @@
+img{
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+span{
+    font-size: 18px;
+}
+
+#autor{
+    font-weight: bold;
+
+}
+
+.d-flex{
+    margin-top: 45px;
+}
+
+@media screen and (max-width: 600px){
+    span{
+        font-size: 12px;
+    }
+    img{
+        margin-top: -5px;
+        width: 15px;
+        height: 15px;
+    }
+}

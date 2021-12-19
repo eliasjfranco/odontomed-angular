@@ -1,0 +1,59 @@
+h3{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.cal-cell{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-transform: uppercase;
+}
+
+.abs-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cal-month-view:hover{
+    cursor: pointer;
+}
+
+.btn-primary, .btn-outline-secondary{
+    margin-top: 10px;
+    min-width: 180px;
+    min-height: 30px;
+}
+
+#seleccion, td{
+    font-size: 20px;
+}
+
+.dia{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#mes, .calendario{
+    margin-top: 25px;
+}
+
+@media screen and (max-width: 600px){
+    .abs-center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cal-month-view{
+        text-align: center;
+        font-size: 12px;
+    }
+    .btn-primary, .btn-outline-secondary{
+        margin-top: 10px;
+        max-height: 80px;
+        min-width: 60px;
+        font-size: 12px;
+    }
+}

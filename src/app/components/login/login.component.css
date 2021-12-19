@@ -1,0 +1,26 @@
+.abs-center{
+    margin-top: 100px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-footer{
+   text-align: center;
+}
+
+.form-group{
+    width: 400px;
+}
+
+h4{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+}
+
+label{
+    padding-top: 20px;
+}

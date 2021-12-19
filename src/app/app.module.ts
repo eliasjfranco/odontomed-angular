@@ -13,9 +13,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarHeaderComponent } from './utils/calendar-header/calendar-header.component'
 import { registerLocaleData, DatePipe } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
-import { AlertTurnDirective } from './utils/alert/alert-turn.directive';
 import { RegistroComponent } from './components/registro/registro.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { NavbarComponent } from './components/navbar/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer/footer.component';
 
 registerLocaleData(localeEs);
 
@@ -25,8 +30,9 @@ registerLocaleData(localeEs);
     LoginComponent,
     TurnosComponent,
     CalendarHeaderComponent,
-    AlertTurnDirective,
     RegistroComponent,
+    NavbarComponent,
+    FooterComponent
     
   ],
   imports: [
@@ -38,10 +44,18 @@ registerLocaleData(localeEs);
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     NoopAnimationsModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    DatePipe
+    DatePipe,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+  ],
+  exports: [
+    MatFormFieldModule, MatInputModule
   ],
   bootstrap: [AppComponent]
 })

@@ -23,8 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void{
-    console.log(this.email);
-    console.log(this.password);
     this.loginUser = new Login(this.email, this.password);
     this.loginService.login(this.loginUser).subscribe(
       data => {

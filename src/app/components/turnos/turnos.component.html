@@ -1,4 +1,6 @@
-<div>
+<app-navbar></app-navbar>
+
+<div id="mes">
   <div class="row text-center">
     <div class="col-md-4"></div>
       <div class="col-md-4">
@@ -6,12 +8,13 @@
       </div>
   </div>
 
-  <div [ngSwitch]="view">
+  <div [ngSwitch]="view" class="calendario">
     <mwl-calendar-month-view
       *ngSwitchCase="'month'"
       [viewDate]="viewDate"
       [events]="events"
       [locale]="locale"
+      [refresh]="refresh"
       [excludeDays]="excludeDays"
       (beforeViewRender)="beforeMonthViewRender($event)"
       (dayClicked)="clickDate(clickedDate = $event.day.date)"
@@ -22,15 +25,15 @@
   <app-calendar-header [(view)]="view" [(viewDate)]="viewDate" [locale]="locale"></app-calendar-header>
 </div>
 
-<strong *ngIf="clickedDate">Día seleccionado: {{dia}} </strong>
-<div #vf></div>
+<label id="seleccion" *ngIf="clickedDate">Día seleccionado: <label class="dia">{{dia}}</label> </label>
+
 
 <div *ngIf="show">
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Horario</th>
-        <th scope="col">Agendar</th>
+        <th scope="col" class="dia">Horario</th>
+        <th scope="col" class="dia">Agendar</th>
       </tr>
     </thead>
     <tbody *ngFor="let hs of horario; let i=index">
