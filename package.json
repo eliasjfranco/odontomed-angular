@@ -27,6 +27,7 @@
     "date-fns": "^2.16.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.7",
+    "swiper": "^7.3.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

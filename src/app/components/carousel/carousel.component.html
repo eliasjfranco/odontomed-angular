@@ -1,0 +1,12 @@
+<swiper class="swiper" [config]="config">
+    <div class="swiper-wrapper test">
+        <div class="swiper-slide" *ngFor="let i of img">
+            <img [src]="i">
+            <div class="caption">
+                <p>{{i}}</p>
+            </div>
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>

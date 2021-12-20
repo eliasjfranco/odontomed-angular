@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import Swiper from 'swiper';
 
 registerLocaleData(localeEs);
 
@@ -32,7 +34,8 @@ registerLocaleData(localeEs);
     CalendarHeaderComponent,
     RegistroComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CarouselComponent
     
   ],
   imports: [
@@ -48,6 +51,7 @@ registerLocaleData(localeEs);
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    Swiper
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
