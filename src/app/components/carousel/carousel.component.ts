@@ -3,11 +3,6 @@ import SwiperCore, {Autoplay, Pagination, Navigation} from 'swiper';
 
 SwiperCore.use([Autoplay, Pagination, Navigation])
 
-@Component({
-  selector: 'app-carousel',
-  templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.css']
-})
 export class CarouselComponent implements OnInit {
 
   private imgUrl = "https://odontomed.s3.sa-east-1.amazonaws.com/banner/"
