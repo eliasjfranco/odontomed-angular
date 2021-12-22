@@ -36,8 +36,33 @@ h3{
     font-weight: bold;
 }
 
+.cal-day-number{
+    color: black;
+}
+
 #mes, .calendario{
     margin-top: 25px;
+}
+
+
+.snTurno{
+    float:left;
+    width: 20px;
+    height: 20px;
+    background-color: #e35d6a !important;
+    
+}
+
+.turno{
+    float:left;
+    width: 20px;
+    height: 20px;
+    background-color: #479f76 !important;
+}
+
+#info{
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 600px){

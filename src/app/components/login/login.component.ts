@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
 
   recuperarPwd():void{
     let modificarUser = new ModificarUsuario(this.emailPwd, this.dniPwd, this.passwordPwd);
-    this.dialog.open(PasswordComponent);
     this.loginService.modificarPwd(modificarUser).subscribe(p => {
+      this.dialog.open(PasswordComponent);
       setTimeout(() => { this.backLogin(), 3000});
     })
     

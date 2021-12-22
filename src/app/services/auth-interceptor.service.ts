@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators'
 import { ErrorNotificacion } from './error-notificacion';
@@ -9,7 +10,7 @@ import { ErrorNotificacion } from './error-notificacion';
 })
 export class AuthInterceptorService implements HttpInterceptor{
 
-  constructor(public alerta:ErrorNotificacion){}
+  constructor(public alerta:ErrorNotificacion, private route: Router){}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem("token");
@@ -49,11 +50,14 @@ export class AuthInterceptorService implements HttpInterceptor{
                   this.alerta.showError(error.status, error.error, 'errorLog');
                 //alertar error no encontrado
                 case 404:
-                  this.alerta.showError(error.status, error.error, 'error')
+                  this.alerta.showError(error.status, error.error, 'error');
                 
                 }
                 return throwError(error);
               })
             )
   }
+
+
+  
 }

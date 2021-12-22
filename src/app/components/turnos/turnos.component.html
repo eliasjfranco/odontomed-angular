@@ -3,30 +3,29 @@
 <div id="mes">
   <div class="row text-center">
     <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <h3>{{ viewDate | calendarDate: view + 'ViewTitle':'Es'}}</h3>
-      </div>
+    <div class="col-md-4">
+      <h3>{{ viewDate | calendarDate: view + 'ViewTitle':'Es'}}</h3>
+    </div>
   </div>
+  <div class="snTurno"></div>
+  <div class="position-relative start-0" id="info">sin turno</div>
+  
+  <div class="turno"></div>
+  <div class="position-relative start-0" id="info">dias disponibles</div>
 
   <div [ngSwitch]="view" class="calendario">
-    <mwl-calendar-month-view
-      *ngSwitchCase="'month'"
-      [viewDate]="viewDate"
-      [events]="events"
-      [locale]="locale"
-      [refresh]="refresh"
-      [excludeDays]="excludeDays"
-      (beforeViewRender)="beforeMonthViewRender($event)"
-      (dayClicked)="clickDate(clickedDate = $event.day.date)"
-    >
+    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale"
+      [refresh]="refresh" [excludeDays]="excludeDays" (beforeViewRender)="beforeMonthViewRender($event)"
+      (dayClicked)="clickDate(clickedDate = $event.day.date)">
     </mwl-calendar-month-view>
   </div>
 
   <app-calendar-header [(view)]="view" [(viewDate)]="viewDate" [locale]="locale"></app-calendar-header>
 </div>
 
-<label id="seleccion" *ngIf="clickedDate">Día seleccionado: <label class="dia">{{dia}}</label> </label>
-
+<div *ngIf="show">
+  <label id="seleccion" *ngIf="clickedDate">Día seleccionado: <label class="dia">{{dia}}</label> </label>
+</div>
 
 <div *ngIf="show">
   <table class="table">

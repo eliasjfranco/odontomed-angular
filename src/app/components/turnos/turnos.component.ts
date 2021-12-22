@@ -20,7 +20,10 @@ import { ErrorNotificacion } from 'src/app/services/error-notificacion';
       .cal-month-view .bg-pink,
       .cal-week-view .cal-day-columns .bg-pink,
       .cal-day-view .bg-pink {
-        background-color: hotpink !important;
+        background-color: #e35d6a !important;
+      }
+      .bg-green {
+        background-color: #479f76 !important;
       }
     `,
   ]
@@ -29,7 +32,7 @@ export class TurnosComponent implements OnInit {
 
   @ViewChild("vf", { read: ViewContainerRef }) vf: ViewContainerRef;
 
-  show = false;
+  show : boolean = false;
 
   filtro: Promise<boolean>;
 
@@ -56,6 +59,8 @@ export class TurnosComponent implements OnInit {
   now = new Date();
 
   dia: string;
+
+  dayblock: boolean = false;
 
   formatDate: string[] = ['yyyy-MM-dddd'];
 
@@ -88,6 +93,8 @@ export class TurnosComponent implements OnInit {
           if(d < this.now || i == dia){
             day.cssClass = 'bg-pink';
             this.cd.detectChanges();
+          }else{
+            day.cssClass = 'bg-green';
           }
         });
       }  
@@ -99,10 +106,7 @@ export class TurnosComponent implements OnInit {
     this.horario = this.turno.slice();
     this.dia = this.datePipe.transform(this.clickedDate, 'dd-MM-yyyy');
 
-    if (date > this.now)
-      this.show = true;
-    else
-      this.show = false;
+    
 
     this.turnoPersona.forEach(t => {
       if (this.datePipe.transform(date, 'yyyy-MM-dd') == t.fecha) {
@@ -111,6 +115,13 @@ export class TurnosComponent implements OnInit {
         });
       }
     });
+    /*if(!this.horario.length){
+      this.dayblock = true;
+    }*/
+    if (date > this.now && this.horario.length)
+      this.show = true;
+    else
+      this.show = false;
   }
 
 

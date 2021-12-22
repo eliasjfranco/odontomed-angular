@@ -28,4 +28,9 @@ export class LoginService {
     return this.http.post<any>(endpoint, usuario);
   }
 
+  isLogged(token: string):Observable<any>{
+    let endpoint = this.url + "/verify"
+    return this.http.post<any>(endpoint, token);
+  }
+
 }
