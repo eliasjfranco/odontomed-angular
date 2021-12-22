@@ -22,7 +22,12 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import Swiper from 'swiper';
+import { GalleryModule } from 'ng-gallery';
+import { IndexComponent } from './components/index/index.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { UbicacionComponent } from './components/ubicacion/ubicacion.component';
+import { PasswordComponent } from './components/password/password.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 registerLocaleData(localeEs);
 
@@ -35,7 +40,11 @@ registerLocaleData(localeEs);
     RegistroComponent,
     NavbarComponent,
     FooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    IndexComponent,
+    ContactoComponent,
+    UbicacionComponent,
+    PasswordComponent
     
   ],
   imports: [
@@ -51,7 +60,8 @@ registerLocaleData(localeEs);
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    Swiper
+    GalleryModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},

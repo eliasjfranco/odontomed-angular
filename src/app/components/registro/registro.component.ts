@@ -14,7 +14,7 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 })
 export class RegistroComponent implements OnInit {
 
-  fecha: Event;
+  fecha: Date;
   register: RegisterRequest;
   firstname: string;
   lastname: string;
@@ -48,7 +48,7 @@ export class RegistroComponent implements OnInit {
 
 
   onRegister():void{
-    var nacimiento = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+    let nacimiento = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
     console.log(nacimiento);
     this.register = new RegisterRequest(this.email, this.firstname, this.lastname, nacimiento, this.dni, this.password, this.tel);
     this.service.register(this.register).subscribe(

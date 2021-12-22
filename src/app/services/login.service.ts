@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login } from '../model/login';
+import { ModificarUsuario } from '../model/modificar-usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private url: string = "http://localhost:8082/auth/login";
+  private url: string = "http://localhost:8082/auth";
 
   constructor(private http:HttpClient) { }
 
@@ -18,7 +19,13 @@ export class LoginService {
   }
 
   login(login:Login):Observable<any>{
-    return this.http.post<any>(this.url, login);
+    let endpoint = this.url + "/login"
+    return this.http.post<any>(endpoint, login);
+  }
+
+  modificarPwd(usuario: ModificarUsuario): Observable<any>{
+    let endpoint = this.url + "/modificarPassword"
+    return this.http.post<any>(endpoint, usuario);
   }
 
 }

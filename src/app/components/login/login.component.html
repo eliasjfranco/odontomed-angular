@@ -1,7 +1,9 @@
+<app-navbar></app-navbar>
+
 <div class="container">
     <div class="abs-center">
         <img src="./assets/img/logo.jpg" alt="">
-        <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+        <form #f="ngForm" (ngSubmit)="onLogin()" novalidate *ngIf="login">
             <div class="card">
                 <h4 class="card-header">ingreso</h4>
                 <div class="card-body">
@@ -12,10 +14,42 @@
                     <div class="form-group">
                         <label>Password</label>
                         <input class="form-control" type="password" name="password" [(ngModel)]="password" required>
+                        <a (click)="goRecuperar()" id="recordar">Olvido su contraseña?</a>
                     </div>
                 </div>
                 <div class="card-footer">
                     <input type="submit" class="btn btn-primary" [disabled]="!f.valid" value="Ingresar">
+                    <div class="position-absolute bottom-0 start-0">
+                        <a [routerLink]="['/registro']" routerLinkActive="router-link-active"
+                            id="registrarse">Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form #ff="ngForm" *ngIf="pwd" (ngSubmit)="recuperarPwd()">
+            <div class="card">
+                <h4 class="card-header">recuperar contraseña</h4>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Email" name="emailPwd" [(ngModel)]="emailPwd" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Dni" name="dniPwd" [(ngModel)]="dniPwd"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Contraseña Nueva"
+                                name="passwordPwd" [(ngModel)]="passwordPwd" required>
+                        </div>
+                        <div class="position-absolute bottom-0 start-0">
+                            <a (click)="backLogin()" id="backLogin">Volver al Login</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-primary" [disabled]="!ff.valid" value="Recuperar"
+                        data-bs-toggle="modal" data-bs-target="modalAlert">
                 </div>
             </div>
         </form>
