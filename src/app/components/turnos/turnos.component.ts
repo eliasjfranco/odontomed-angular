@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { Turno_Persona } from 'src/app/model/turno_persona';
 import { TurnosService } from 'src/app/services/turnos.service';
 import { CalendarEvent, CalendarMonthViewBeforeRenderEvent, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
@@ -8,6 +8,8 @@ import { plainToClass } from 'class-transformer';
 import { TurnoPersona } from 'src/app/model/response/turno-persona';
 import { Router } from '@angular/router';
 import { ErrorNotificacion } from 'src/app/services/error-notificacion';
+import { LoginService } from 'src/app/services/login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-turnos',
@@ -32,7 +34,7 @@ export class TurnosComponent implements OnInit {
 
   @ViewChild("vf", { read: ViewContainerRef }) vf: ViewContainerRef;
 
-  show : boolean = false;
+  show: boolean = false;
 
   filtro: Promise<boolean>;
 
@@ -69,45 +71,41 @@ export class TurnosComponent implements OnInit {
     private datePipe: DatePipe,
     private router: Router,
     private alerta: ErrorNotificacion,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private loginService: LoginService
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.show = false;
+
     this.turnoPersona = this.obtenerTurnos();
-    //Obtenemos todos los turnos
 
     this.turno = this.obtenerIdTurnos();
-    //Obtenemos todos los ID posibles de horarios
-
-
   }
 
-  beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void{
+
+  beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
     this.blockTurnos().subscribe(p => {
       let fecha = this.getFechas(p.cant)
-      for(let i of fecha){
-        renderEvent.body.forEach((day) => {
-          const d = day.date;
-          const dia = this.datePipe.transform(d, 'yyyy-MM-dd');
-          if(d < this.now || i == dia){
-            day.cssClass = 'bg-pink';
-            this.cd.detectChanges();
-          }else{
-            day.cssClass = 'bg-green';
+      for (let m = 0; m < renderEvent.body.length; m++) {
+        if (renderEvent.body[m].date < this.now) {
+          renderEvent.body[m].cssClass = 'bg-pink';
+        } else {
+          let dia = this.datePipe.transform(renderEvent.body[m].date, 'yyyy-MM-dd');
+          if (fecha.indexOf(dia) === -1) {
+            renderEvent.body[m].cssClass = 'bg-green';
+          } else {
+            renderEvent.body[m].cssClass = 'bg-pink';
           }
-        });
-      }  
+          this.cd.detectChanges();
+        }
+      }
     });
-    
   }
 
   clickDate(date: Date): void {
     this.horario = this.turno.slice();
-    this.dia = this.datePipe.transform(this.clickedDate, 'dd-MM-yyyy');
-
-    
-
+    this.dia = this.datePipe.transform(date, 'dd-MM-yyyy');
     this.turnoPersona.forEach(t => {
       if (this.datePipe.transform(date, 'yyyy-MM-dd') == t.fecha) {
         this.horario = this.horario.filter((item) => {
@@ -115,35 +113,35 @@ export class TurnosComponent implements OnInit {
         });
       }
     });
-    /*if(!this.horario.length){
-      this.dayblock = true;
-    }*/
-    if (date > this.now && this.horario.length)
+    if (date >= this.now && this.horario.length)
       this.show = true;
     else
       this.show = false;
   }
 
 
-  //TERMINAR SERVICIO DE AGENDAR TURNO MEDIANTE API
   agendar(id: number, clickedDate: Date, i: number): void {
     let hora = new Turno();
     let fecha = new TurnoPersona();
     let turno = new Turno_Persona(this.datePipe.transform(clickedDate, 'dd/MM/yyyy'), id);
-    this.turnoService.saveTurno(turno).subscribe(
-      t => {
-        fecha = plainToClass(TurnoPersona, t)
-        hora = plainToClass(Turno, fecha.turno)
+    if (this.loginService.isLogged()) {
+      this.turnoService.saveTurno(turno).subscribe(
+        t => {
+          fecha = plainToClass(TurnoPersona, t)
+          hora = plainToClass(Turno, fecha.turno)
+          this.alerta.showError(202, "Turno Agendado con exito: " + this.datePipe.transform(fecha.fecha, 'dd/MM/yyyy') + " Hora: " + hora.hs, 'okTurn');
+          setTimeout(() => this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/turnos'])
+          }), 5000);
 
-        this.alerta.showError(202, "Turno Agendado con exito: " + this.datePipe.transform(fecha.fecha, 'dd/MM/yyyy') + " Hora: " + hora.hs, 'okTurn');
-        //this.createComponent();
-        setTimeout(() => this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/turnos'])
-        }), 5000);
+        }
+      );
+      this.alertTurn = true
+    } else {
+      this.router.navigate(['/login']);
+      this.alerta.showError(200, "Debe volver a iniciar sesión", 'info');
+    }
 
-      }
-    );
-    this.alertTurn = true
   }
 
   obtenerTurnos(): Turno_Persona[] {
@@ -167,23 +165,21 @@ export class TurnosComponent implements OnInit {
     return turno;
   }
 
-  blockTurnos(){
-    let turnos = [];
-    let set = new Set();
+  blockTurnos() {
     return this.turnoService.getCantId();
   }
 
-  getFechas(cant: number){
+  getFechas(cant: number) {
     let turnos = [];
     let set = new Set();
-    for(let i = 0; i<this.turnoPersona.length; i++){
+    for (let i = 0; i < this.turnoPersona.length; i++) {
       turnos.push(this.turnoPersona[i].fecha);
     }
     const indices = new Set(turnos)
     turnos.pop();
-    for(let item of indices){
+    for (let item of indices) {
       const dayblock = this.turnoPersona.filter(p => p.fecha == item);
-      if(dayblock.length == cant){
+      if (dayblock.length == cant) {
         set.add(item)
       }
     }

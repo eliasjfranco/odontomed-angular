@@ -10,7 +10,7 @@ export class ErrorNotificacion {
 
   showError(code: number, message: string, clas: string): void{
     this.zone.run(() => {
-    this.snackBar.open(message, 'X', {panelClass: [clas], horizontalPosition: 'center', verticalPosition: 'top', duration: 3000});
+    this.snackBar.open(message, 'X', {panelClass: [clas], horizontalPosition: 'center', verticalPosition: 'top', duration: 5000});
     });
   }
 }

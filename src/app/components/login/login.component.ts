@@ -34,13 +34,11 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void{
     let loginUser = new Login(this.email, this.password);
-    this.loginService.login(loginUser).subscribe(
-      data => {
-        localStorage.setItem("token", data.token);
+    this.loginService.login(loginUser).subscribe(data => {
+      if(this.loginService.isLogged()){
         this.redirect();
       }
-    )
-
+    });
   }
 
   redirect(): void{

@@ -44,14 +44,16 @@ export class AuthInterceptorService implements HttpInterceptor{
                   //= `Error code: ${error.status}, Mensaje: ${error.error}`;
                 //alerta no autorizado modificar datos usuario
                 case 401:
-                  this.alerta.showError(error.status, error.error, 'errorMod');
+                  this.alerta.showError(401, "Credenciales vencidas", 'errorMod');
                 //alerta error login
                 case 403:
                   this.alerta.showError(error.status, error.error, 'errorLog');
                 //alertar error no encontrado
                 case 404:
                   this.alerta.showError(error.status, error.error, 'error');
-                
+                //errores JWT
+                case 415:
+                  this.route.navigate[('/login')];
                 }
                 return throwError(error);
               })

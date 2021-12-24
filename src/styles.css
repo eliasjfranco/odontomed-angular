@@ -22,6 +22,16 @@ body {
     color: white;
 }
 
+.info{
+    background-color:rgb(255, 253, 109);
+    color: black;
+}
+
+.info button{
+    background-color:rgb(253, 249, 0);
+    color: black;
+}
+
 .okReg{
 
     background-color: green;

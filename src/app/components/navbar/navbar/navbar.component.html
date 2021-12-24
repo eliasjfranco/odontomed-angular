@@ -5,13 +5,16 @@
                 <a [routerLink]="['/']" routerLinkActive="router-link-active"  class="nav-link">Inicio</a>
             </li>
             <li class="nav-item">
-                <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="nav-link">Turnos</a>
+                <a [routerLink]="['/turnos']" routerLinkActive="router-link-active"  class="nav-link">Turnos</a>
             </li>
             <li class="nav-item">
                 <a [routerLink]="['/registro']" routerLinkActive="router-link-active"  class="nav-link">Contacto</a>
             </li>
             <li class="nav-item">
                 <a [routerLink]="['/ubicacion']" class="nav-link">Ubicación</a>
+            </li>
+            <li class="nav-item">
+                <a (click)="logout()">Logout</a>
             </li>
         </ul>
     </nav>
