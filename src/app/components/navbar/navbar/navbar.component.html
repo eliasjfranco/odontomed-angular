@@ -1,21 +1,31 @@
 <header>
-    <nav class="navbar navbar-light justify-content-end" style="background-color: #e3f2fd">
+    <nav #main class="navbar navbar-light" style="background-color: #e3f2fd" id="barra">
         <ul class="nav">
             <li class="nav-item">
-                <a [routerLink]="['/']" routerLinkActive="router-link-active"  class="nav-link">Inicio</a>
+                <a [routerLink]="['/']" routerLinkActive="router-link-active" class="nav-link">Inicio</a>
+            </li>
+            <li class="nav-item" *ngIf="isLogged; else viewLogin" id="turnos">
+                <a [routerLink]="['/turnos']" routerLinkActive="router-link-active" class="nav-link">Turnos</a>
             </li>
             <li class="nav-item">
-                <a [routerLink]="['/turnos']" routerLinkActive="router-link-active"  class="nav-link">Turnos</a>
-            </li>
-            <li class="nav-item">
-                <a [routerLink]="['/registro']" routerLinkActive="router-link-active"  class="nav-link">Contacto</a>
+                <a [routerLink]="['/registro']" routerLinkActive="router-link-active" class="nav-link">Contacto</a>
             </li>
             <li class="nav-item">
                 <a [routerLink]="['/ubicacion']" class="nav-link">Ubicación</a>
             </li>
-            <li class="nav-item">
-                <a (click)="logout()">Logout</a>
+            
+
+            <li class="nav-item" *ngIf="isLogged">
+                <a class="nav-link" mat-button [matMenuTriggerFor]="menu" id="nombre">{{name}}</a>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="['/perfil']" routerLinkActive="router-link-active" >Editar Perfil</button>
+                    <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
+                </mat-menu>
             </li>
+
+            <ng-template #viewLogin>
+                <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
+            </ng-template>
         </ul>
     </nav>
 </header>

@@ -9,7 +9,11 @@ import { RegisterResponse } from '../model/response/registerResponse';
 })
 export class RegistroService {
 
+  //Conexion mediante local
   private url: string = "http://localhost:8082/auth/register";
+  
+  //conexion mediante Docker
+  //private url: string = "http://odontomed-app:8082/auth/register";
 
   constructor(private http: HttpClient) { }
 

@@ -1,15 +1,14 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { Turno_Persona } from 'src/app/model/turno_persona';
 import { TurnosService } from 'src/app/services/turnos.service';
 import { CalendarEvent, CalendarMonthViewBeforeRenderEvent, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DOCUMENT } from '@angular/common';
 import { Turno } from 'src/app/model/turno';
 import { plainToClass } from 'class-transformer';
 import { TurnoPersona } from 'src/app/model/response/turno-persona';
 import { Router } from '@angular/router';
 import { ErrorNotificacion } from 'src/app/services/error-notificacion';
 import { LoginService } from 'src/app/services/login.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-turnos',

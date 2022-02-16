@@ -9,7 +9,7 @@ a:hover{
 }
 
 form{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 h4{
@@ -17,4 +17,16 @@ h4{
     text-transform: uppercase;
     font-family: "Poppins", sans-serif;
     font-size: 18px;
+}
+
+#formRegistro{
+    position: relative;
+}
+
+@media (max-width: 450px) {
+
+    input{
+        font-size: 10px;
+    }
+    
 }

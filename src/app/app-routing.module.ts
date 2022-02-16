@@ -5,8 +5,10 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { TurnosComponent } from './components/turnos/turnos.component';
+import { UbicacionComponent } from './components/ubicacion/ubicacion.component';
 import { AuthGuard } from './services/guard/auth-guard';
 import { LoginService } from './services/login.service';
 
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path:'turnos', component: TurnosComponent, canActivate: [AuthGuard]},
   {path:'registro', component: RegistroComponent},
   {path:'carousel', component: CarouselComponent},
+  {path:'ubicacion', component: UbicacionComponent},
   {path:'contacto', component: ContactoComponent, canActivate: [AuthGuard]},
+  {path:'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
   {path:'**', redirectTo:'/', pathMatch:'full'}
 ];
 

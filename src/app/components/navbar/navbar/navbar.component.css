@@ -12,3 +12,35 @@ a{
     color: black;
     text-decoration: none;
 }
+
+a:hover{
+    cursor: pointer;
+}
+
+#nombre{
+    font-weight: bold;
+}
+
+#barra{
+    justify-content: end;
+}
+
+@media (max-width: 450px) {
+
+    #barra{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav-link{
+        font-size: 14px;
+    }
+
+    .nav-item:hover, .nav-link:hover{
+        color: black;
+        background-color: tomato;
+        font-size: 18px;
+    }
+}
+

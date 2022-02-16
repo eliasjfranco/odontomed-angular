@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegistroService } from 'src/app/services/registro.service';
 import { RegisterRequest } from 'src/app/model/response/register';
 import { ErrorNotificacion } from 'src/app/services/error-notificacion';
@@ -22,28 +21,17 @@ export class RegistroComponent implements OnInit {
   dni: string;
   password: string;
   tel: string;
-  regForm: FormGroup;
   events: string[] = [];
   image : string;
 
   constructor(
     private datePipe: DatePipe,
-    private builder: FormBuilder,
     private service: RegistroService,
     private alerta: ErrorNotificacion,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.regForm = this.builder.group({
-      fecha: [null, Validators.required],
-      firstname: [null, Validators.required],
-      lastname: [null, Validators.required],
-      email: [null, Validators.required],
-      dni: [null, Validators.required],
-      password: [null, Validators.required],
-      tel: [null, Validators.required],
-    });
   }
 
 

@@ -28,8 +28,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { UbicacionComponent } from './components/ubicacion/ubicacion.component';
 import { PasswordComponent } from './components/password/password.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AuthGuard } from './services/guard/auth-guard';
-import { LoginService } from './services/login.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { PerfilComponent } from './components/perfil/perfil.component'
 
 registerLocaleData(localeEs);
 
@@ -46,7 +46,8 @@ registerLocaleData(localeEs);
     IndexComponent,
     ContactoComponent,
     UbicacionComponent,
-    PasswordComponent
+    PasswordComponent,
+    PerfilComponent
     
   ],
   imports: [
@@ -63,7 +64,8 @@ registerLocaleData(localeEs);
     MatFormFieldModule,
     MatInputModule,
     GalleryModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},

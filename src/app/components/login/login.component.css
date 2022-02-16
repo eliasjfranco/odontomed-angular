@@ -1,6 +1,9 @@
-.abs-center{
+img{
     margin-top: 100px;
-    display: grid;
+}
+
+.center{
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -49,4 +52,16 @@ label{
 #backLogin:hover{
     font-size: 20px;
     font-weight: bold;
+}
+
+@media (max-width: 450px) {
+
+    .form-group{
+        width: 300px;
+    }
+
+    img{
+        width: 350px;
+    }
+    
 }

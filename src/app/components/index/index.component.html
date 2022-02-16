@@ -1,5 +1,14 @@
 <header>
     <app-navbar></app-navbar>
     <app-carousel></app-carousel>
-    <h3>me encuentro en el index</h3>
+    
+    <div id="principal" *ngIf="!flag">
+        <div id="img">
+            <img src="./assets/img/cepillo-de-diente.png" id="cepillo">
+            <img src="./assets/img/diente-solid.svg" id="diente">
+        </div>
+        <div id="estrellas">
+            <img src="./assets/img/estrellas.png" id="star" class="ocultar">
+        </div>
+    </div>
 </header>

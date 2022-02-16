@@ -1,0 +1,44 @@
+.abs-center{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#opciones{
+    float: right;
+}
+
+a{
+    color: black;
+    margin-top: 40px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+a:hover{
+    color: black;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#form{
+    width: 600px;
+}
+
+.card-body{
+    height: 300px;
+}
+
+.card-header{
+    font-weight: bold;
+    text-align: center;
+}
+
+#btn{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

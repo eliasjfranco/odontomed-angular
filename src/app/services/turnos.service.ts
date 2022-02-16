@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { BlockTurn } from '../model/response/block-turn';
 import { Turno } from '../model/turno';
 import { Turno_Persona } from '../model/turno_persona';
@@ -11,7 +10,13 @@ import { Turno_Persona } from '../model/turno_persona';
 })
 export class TurnosService {
 
+
+  //conexion mediante local
   private url: string = "http://localhost:8082/turno";
+
+  //conexion mediante docker
+  //private url: string = "http://odontomed-app:8082/turno";
+
   private endpoint: string;
   constructor(private http:HttpClient) { }
 

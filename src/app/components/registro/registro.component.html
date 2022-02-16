@@ -1,52 +1,45 @@
 <app-navbar></app-navbar>
 
-<div class="container">
+<div class="container" id="formRegistro">
     <div class="abs-center">
-        <form [formGroup]="regForm" (ngSubmit)="onRegister()" novalidate>
+        <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px">
-                            <h4 class="card-header text-center mb-5">Registro</h4>
+                            <h4 class="card-header text-center">Registro</h4>
                             <div class="card-body p-5">
-                                <div class="mb-3">
+                                <div class="form-group">
                                     <input type="email" class="form-control"
-                                        placeholder="Dirección de correo: nombre@ejemplo.com" [(ngModel)]="email"
-                                        formControlName="email">
+                                        placeholder="Dirección de correo: nombre@ejemplo.com" name="email" [(ngModel)]="email" required>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" placeholder="Contraseña"
-                                        [(ngModel)]="password" formControlName="password">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Contraseña" name="password" [(ngModel)]="password" required>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="firstname"
-                                        formControlName="firstname">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nombre" name="firstname" [(ngModel)]="firstname" required>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Apellido"
-                                        [(ngModel)]="lastname" formControlName="lastname">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Apellido" name="lastname" [(ngModel)]="lastname" required>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="DNI" [(ngModel)]="dni"
-                                        formControlName="dni">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="DNI" name="dni" [(ngModel)]="dni" required>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Telefono de Contacto"
-                                        [(ngModel)]="tel" formControlName="tel">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Telefono de Contacto" name="tel"[(ngModel)]="tel" required>
                                 </div>
                                 <label class="form-label">Fecha de Nacimiento:</label>
                                 <div class="form-group align-items-center">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Presione el calendario</mat-label>
-                                        <input matInput [matDatepicker]="picker" formControlName="fecha"
-                                            [(ngModel)]="fecha">
+                                        <input matInput [matDatepicker]="picker" name="fecha" [(ngModel)]="fecha">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker touchUi #picker></mat-datepicker>
                                     </mat-form-field>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-primary" [disabled]="regForm.invalid">Registrarse</button>
+                                    <input type="submit" class="btn btn-primary" [disabled]="!f.valid" value="Registrarse">
                                     <div class="position-absolute bottom-0 start-0">
                                         <a [routerLink]="['/login']" routerLinkActive="router-link-active">Volver al Login</a>
                                     </div>

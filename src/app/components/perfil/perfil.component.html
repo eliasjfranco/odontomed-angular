@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+<div class="abs-center">
+  <div class="" id="opciones">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" (click)="goInfo()">Información Personal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="goContacto()">Contacto</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="goTurnos()">Mis Turnos</a>
+      </li>
+    </ul>
+  </div>
+  <div class="position-relative start-0 card " id="form" *ngIf="ipersonal || contacto || turnos">
+    <div class="card-header">{{selected}}</div>
+    <div class="card-body" *ngIf="ipersonal">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input class="form-control" type="text" [(ngModel)]="nombre" [disabled]="true"> 
+        <label>Apellido</label>
+        <input class="form-control" type="text" [(ngModel)]="apellido" [disabled]="true">
+        <label>Fecha de Nacimiento</label>
+        <input class="form-control" type="text" [(ngModel)]="fnac" [disabled]="true">
+        <label>DNI</label>
+        <input class="form-control" type="text" [(ngModel)]="DNI" [disabled]="true">
+      </div>
+    </div>
+    <div class="card-footer justify-content-center">
+      <input class="btn btn-primary" *ngIf="!modificar" value="Modificar" id="btn">
+    </div>
+
+    <div class="card-body" *ngIf="contacto" id="form">
+      <div class="form-group">
+        <label>Correo</label>
+        <input class="form-control" type="text" [(ngModel)]="correo" [disabled]="true"> 
+        <label>Telefono de Contacto</label>
+        <input class="form-control" type="text" [(ngModel)]="tel" [disabled]="true">
+      </div>
+    </div>
+
+    <div class="card-body" *ngIf="turnos" id="form">
+      <div class="form-group">
+        <label>Correo</label>
+        <input class="form-control" type="text"> 
+        <label>Telefono de Contacto</label>
+        <input class="form-control" type="text">
+      </div>
+    </div>
+
+  </div>
+</div>

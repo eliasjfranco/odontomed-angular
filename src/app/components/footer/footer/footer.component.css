@@ -13,13 +13,21 @@ span{
 
 }
 
+.footer{
+    margin-top: 50px;
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .d-flex{
     margin-top: 45px;
 }
 
 @media screen and (max-width: 600px){
     span{
-        font-size: 12px;
+        font-size: 14px;
     }
     img{
         margin-top: -5px;

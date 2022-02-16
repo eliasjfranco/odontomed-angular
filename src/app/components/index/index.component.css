@@ -1,0 +1,105 @@
+#diente{
+    position: absolute;
+    width: 200px;
+    animation: linear infinite;
+    animation-name: changeColor;
+    animation-duration: 8s;
+}
+
+@keyframes changeColor {
+    10%{
+        filter: invert(25%);
+    }
+    25%{
+        filter: invert(100%);
+    }
+
+    50%{
+        filter: invert(100%);
+    }
+
+    100%{
+        filter: invert(100%);
+    }
+}
+
+#estrellas{
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-top: -80px;
+    filter: invert(96%) sepia(31%) saturate(3954%) hue-rotate(166deg) brightness(106%) contrast(101%);
+}
+
+.ocultar{
+    display: none;
+}
+
+.star{
+    display: inline;
+    width: 130px;
+    animation: linear infinite;
+    animation-name: changeStar;
+    animation-duration: 1s;
+}
+
+@keyframes changeStar {
+    
+    50%{
+        filter: opacity(0);
+        
+    }
+    100%{
+        filter: opacity(1);
+    }
+    
+}
+
+
+
+#cepillo{
+    filter: invert(100%);
+    width: 200px;
+    margin-right: 30px;
+    margin-bottom: 280px;
+    transform: rotate(230deg);
+    position: relative;
+    animation: linear infinite;
+    animation-name: run;
+    animation-duration: 5s;
+  }
+  @keyframes run {
+    0% {
+      left: 0;
+    }
+    25%{
+        left: 80%;
+    }
+    50% {
+      left: 0%;
+    }
+    75%{
+        left: 80%;
+    }
+    100% {
+      left: 0%;   
+    }
+  }
+
+#img{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagenes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+ 
